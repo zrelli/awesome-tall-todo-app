@@ -26,7 +26,7 @@ class NibResetData extends Command
      */
     public function handle()
     {
-        if ($this->confirm('You are going to reset your database data. Do you wish to continue?')) {
+        if ($this->confirm('You are going to reset your database data. Do you wish to continue?',true)) {
             Artisan::call('migrate:fresh');
             Artisan::call('db:seed');
 

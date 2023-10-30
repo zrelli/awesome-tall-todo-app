@@ -1,8 +1,8 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
+use App\Livewire\Pages\TodosPage;
+use App\Livewire\Pages\TodoPage;
+use App\Livewire\Pages\ProfilePage;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,20 +13,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    // return view('dashboard');
-    return view('livewire.pages.todos-page');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
+Route::get(
+    '/todos',
+    TodosPage::class
+)->middleware(['auth', 'verified'])->name('todos.index');
+Route::get(
+    '/profile/{user}',
+    ProfilePage::class
+)->middleware(['auth', 'verified'])->name('users.profile');
+Route::get('todos/{todo}', TodoPage::class)->name('todos.show');
+require __DIR__ . '/auth.php';

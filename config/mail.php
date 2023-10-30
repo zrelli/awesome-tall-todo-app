@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -12,9 +10,7 @@ return [
     | and used as needed; however, this mailer will be used by default.
     |
     */
-
-    'default' => env('MAIL_MAILER', 'smtp'),
-
+    'default' => env('MAIL_MAILER', 'smtp1'),
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -32,9 +28,8 @@ return [
     |            "postmark", "log", "array", "failover"
     |
     */
-
     'mailers' => [
-        'smtp' => [
+        'smtp1' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
@@ -45,48 +40,51 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
-
+        'smtp2' => [
+            'transport' => 'smtp',
+            'url' => env('MAIL_URL2'),
+            'host' => env('MAIL_HOST2', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT2', 587),
+            'encryption' => env('MAIL_ENCRYPTION2', 'tls'),
+            'username' => env('MAIL_USERNAME2'),
+            'password' => env('MAIL_PASSWORD2'),
+            'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+        ],
         'ses' => [
             'transport' => 'ses',
         ],
-
         'mailgun' => [
             'transport' => 'mailgun',
             // 'client' => [
             //     'timeout' => 5,
             // ],
         ],
-
         'postmark' => [
             'transport' => 'postmark',
             // 'client' => [
             //     'timeout' => 5,
             // ],
         ],
-
         'sendmail' => [
             'transport' => 'sendmail',
             'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
         ],
-
         'log' => [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
         ],
-
         'array' => [
             'transport' => 'array',
         ],
-
         'failover' => [
             'transport' => 'failover',
             'mailers' => [
-                'smtp',
+                'smtp1',
                 'log',
             ],
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -97,12 +95,10 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
@@ -113,13 +109,10 @@ return [
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |
     */
-
     'markdown' => [
         'theme' => 'default',
-
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
     ],
-
 ];

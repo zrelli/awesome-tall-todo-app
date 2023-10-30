@@ -14,8 +14,24 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+
+
+            colors: {
+                primary: {
+                  darkest: '#1f2d3d',
+                  dark: '#3c4858',
+                  DEFAULT: '#FFD700', // Your primary yellow color
+                  light: '#e0e6ed',
+                  lightest: '#f9fafc',
+                },
+              },
+
+
         },
     },
 
     plugins: [forms],
+    customClasses: {
+        'z-toast': 'z-50', // You can adjust the z-index value as needed
+      },
 };
